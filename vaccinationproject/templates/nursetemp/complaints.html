@@ -1,0 +1,21 @@
+{% extends 'nursetemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body class="p-3 mb-2 bg-danger-subtle text-emphasis-danger">
+<div>
+<div class="card  bg-info" style="width:600px;margin-left:200px;margin-top:70px;">
+  <form method="post">
+      <BR><h5 align="center"><b>ADD COMPLAINT</b></h5><BR>
+ {% csrf_token %}
+
+    {{form|crispy}}
+   <BR>
+      <div align="center">
+  <button type="submit" class="btn btn-primary" style="width:100px"> Submit</button>
+</div>
+      <br>
+
+</form>
+  </div>
+</div>
+{% endblock %}

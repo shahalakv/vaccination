@@ -1,0 +1,25 @@
+{% extends 'admintemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body class="p-3 mb-2 bg-danger-subtle text-emphasis-danger">
+<div>
+<div class="card  bg-info" style="width:600px;margin-left:150px;margin-top:70px;">
+  <form method="post"><BR>
+      <h5 align="center"><b>ADD REPLY</b></h5><BR>
+ {% csrf_token %}
+      <label class="form-control-label">Complaint</label>
+      <input required class="form-control" readonly value="{{form.complaint}}">
+      <label class="form-control-label">Subject</label>
+      <input required class="form-control" readonly value="{{form.subject}}">
+      <label class="form-control-label">Reply</label><br>
+      <textarea class="form-control-label" rows="5" style="width:600px" name="reply"></textarea><br>
+   <BR>
+      <div align="center">
+  <button type="submit" class="btn btn-primary" style="width:100px"> Submit</button>
+</div>
+<br>
+
+</form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'admintemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:50px;margin-top:70px;">
+   <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ vaccineFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Vaccine_name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th></th>
+      <th></th>
+    </tr>
+  {% for i in vaccine %}
+  <tr>
+      <td>{{i.vaccine_name}}</td>
+      <td>{{i.type}}</td>
+      <td>{{i.description}}</td>
+      <td></td>
+      <td></td>
+<td><a href="{% url 'vaccine_update' i.id %}"><button class="btn btn-success">Update</button></a>
+       <form action="{% url 'vaccine_delete' i.id %}" method="post" style="display:inline" onsubmit="window.mytest()">
+{% csrf_token %}
+           <button class="btn btn-danger">Delete</button></a>
+           </form>
+      </td>
+  </tr>
+
+    {% endfor %}
+</table>
+</div>
+<script type="text/javascript">
+    window.mytest = function()
+    {var isValid = confirm('Are you sure want to delete ?');if (!isValid){ event.preventDefault();
+    }}
+</script>
+{% endblock %}

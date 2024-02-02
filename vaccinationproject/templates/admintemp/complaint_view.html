@@ -1,0 +1,57 @@
+{% extends 'admintemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:50px;margin-top:70px;">
+     <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ complaintFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">S/no</th>
+      <th scope="col">Date</th>
+      <th scope="col">User</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Complaint</th>
+      <th scope="col">Replay</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in complaint %}
+
+  <tr>
+      <th scope="row">{{forloop.counter}}</th>
+       <td>{{i.date}}</td>
+      <td>
+          {% if i.user.is_nurse == True %}
+          <p>Nurse</p>
+          {% elif i.user.is_user == True %}
+          <p>User</p>
+            {% endif %}
+      </td>
+      <td>{{i.subject}}</td>
+      <td>{{i.complaint}}</td>
+
+      <td>
+         {% if i.replay == None %}
+    <a href="{% url 'complaint_replay' i.id %}">Replay Now</a>
+{% else %}
+    {{ i.replay }}
+{% endif %}
+
+      </td>
+      </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

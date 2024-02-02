@@ -1,0 +1,19 @@
+{% extends 'usertemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body class="p-3 mb-2 bg-danger-subtle text-emphasis-danger">
+<div>
+<div class="card  bg-info" style="width:600px;margin-left:150px;margin-top:70px;">
+  <form method="post">
+     <br> <h5 align="center">ADD COMPLAINT</h5><br>
+ {% csrf_token %}
+
+    {{form|crispy}}<br>
+<div align="center">
+  <button type="submit" class="btn btn-primary" style="width:100px"> Submit</button>
+</div>
+      <br>
+</form>
+  </div>
+</div>
+{% endblock %}

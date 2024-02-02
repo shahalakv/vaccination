@@ -1,0 +1,25 @@
+{% extends 'usertemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body class="p-3 mb-2 bg-danger-subtle text-emphasis-danger">
+<div>
+<div class="card  bg-info" style="width:600px;margin-left:150px;margin-top:70px;">
+  <form method="post">
+ {% csrf_token %}
+      <br> <h5 align="center">ADD APPOINTMENT</h5><br>
+      <label class="form-control-label">Date</label>
+      <input required class="form-control" readonly value="{{schedule.date}}">
+      <label class="form-control-label">Hospital</label>
+      <input required class="form-control" readonly value="{{schedule.hospital}}">
+      <label class="form-control-label">Start_time</label>
+      <input required class="form-control" readonly value="{{schedule.start_time}}">
+      <label class="form-control-label">End_time</label>
+      <input required class="form-control" readonly value="{{schedule.end_time}}">
+      <BR>
+      <div align="center">
+  <button type="submit" class="btn btn-primary" style="width:100px"> Submit</button>
+</div>
+</form>
+  </div>
+</div>
+{% endblock %}

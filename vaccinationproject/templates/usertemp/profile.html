@@ -1,0 +1,24 @@
+{% extends 'usertemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card bg-info" style="width: 300px; margin-left: 150px; margin-top: 70px; display:inline" align="center" >
+    <form method="GET">
+        {% csrf_token %}
+        {% if new %}
+        <br>
+        Username   &nbsp;  : &nbsp; {{new.username}}<br>
+        Address    &nbsp; : &nbsp; {{new.address}}<br>
+        Child Name &nbsp; : &nbsp; {{new.child_name}}<br>
+        Child Age  &nbsp; : &nbsp;  {{new.child_age}}<br>
+        Gender     &nbsp;: &nbsp; {{new.gender}}<br>
+        {% else %}
+            <p>No data found for the current user.</p>
+        {% endif %}
+        <br>
+        <div align="center">
+            <a href="{% url 'profile_update' new.id %}"><button type="submit" class="btn btn-primary" style="width:100px"> Update</button></a>
+</div>
+      <br>
+    </form>
+</div>
+{% endblock %}

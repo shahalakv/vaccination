@@ -1,0 +1,29 @@
+{% extends 'theme.html' %}
+{% block content %}
+<body class="p-3 mb-2 bg-danger-subtle text-emphasis-danger">
+<div align="center">
+<div class="card bg-primary-subtle" align="center" style="max-width:500px;border-radius:5px;flex-direction:column-padding:15px;border:1px solid;margin-top:10%;">
+  <form method="post">
+    {% csrf_token %}
+  <div class="mb-3">
+    <h3>Login</h3><br>
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1"  name="uname" aria-describedby="emailHelp">
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
+  </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert.danger" role ="alert">
+      {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+  <button type="submit" class="btn btn-primary" style="width:100px"> Sign In</button>
+  </div>
+  </form>
+</div>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'nursetemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card bg-info" style="width: 600px; margin: 70px ; padding: 50px;">
+
+    <form method="GET" style="width: 100%;">
+        {% csrf_token %}
+
+        {% if new %}
+            <h1 class="pb-5 text-center">Profile</h1>
+            <div>
+                <label for="username" style="display: inline-block; width: 100px;">Username:</label>
+                <span>{{ new.username }}</span>
+            </div>
+            <div>
+                <label for="name" style="display: inline-block; width: 100px;">Name:</label>
+                <span>{{ new.name }}</span>
+            </div>
+            <div>
+                <label for="email" style="display: inline-block; width: 100px;">Email:</label>
+                <span>{{ new.email }}</span>
+            </div>
+            <div>
+                <label for="address" style="display: inline-block; width: 100px;">Address:</label>
+                <span>{{ new.address }}</span>
+            </div>
+            <div>
+                <label for="hospital" style="display: inline-block; width: 100px;">Hospital:</label>
+                <span>{{ new.hospital }}</span>
+            </div>
+        {% else %}
+            <p>No data found for the current user.</p>
+        {% endif %}
+
+        <br>
+    </form>
+
+    <div style="text-align: center;">
+        <a href="{% url 'profile_updates'new.id %}">
+            <button type="submit" class="btn btn-primary" style="width: 100px;">Update</button>
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

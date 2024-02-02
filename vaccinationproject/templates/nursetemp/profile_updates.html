@@ -1,0 +1,17 @@
+{% extends 'nursetemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="width:300px;margin-left:200px;margin-top:70px;">
+  <form method="post">
+ {% csrf_token %}
+<br> <h5 align="center">Update Profile</h5><br>
+    {{updateform|crispy}}
+    <br>
+<div align="center">
+  <button type="submit" class="btn btn-primary" style="width:100px"> Submit</button>
+</div>
+
+</form>
+  </div>
+
+{% endblock %}

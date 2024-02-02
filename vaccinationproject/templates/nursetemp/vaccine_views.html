@@ -1,0 +1,34 @@
+{% extends 'nursetemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:200px;margin-top:70px;">
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ vaccinesFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Vaccine Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+    </tr>
+  {% for i in vaccines %}
+  <tr>
+      <td>{{i.vaccine_name}}</td>
+      <td>{{i.type}}</td>
+      <td>{{i.description}}</td>
+  </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

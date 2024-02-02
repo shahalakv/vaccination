@@ -1,0 +1,29 @@
+{% extends 'admintemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:50px;margin-top:70px;">
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Date</th>
+      <th scope="col">Hospital</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in new %}
+  <tr>
+      <td>{{i.date}}</td>
+      <td>{{i.hospital}}</td>
+      <td>{{i.start_time}}</td>
+      <td>{{i.end_time}}</td>
+
+      <td><a href="{% url 'appointment_update' i.id %}"><button class="btn btn-success">Update</button></a></td>
+      <td><a href="{% url 'appointment_delete' i.id %}"><button class="btn btn-danger">Delete</button></a></td>
+  </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

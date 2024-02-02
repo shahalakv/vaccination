@@ -1,0 +1,50 @@
+{% extends 'usertemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="width:600px;margin-left:100px;margin-top:70px;">
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ appointmentzFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+     <th scope="col">Date</th>
+      <th scope="col">Hospital</th>
+      <th scope="col">Vaccine</th>
+      <th scope="col">Start_time</th>
+      <th scope="col">End_time</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in appointmentz %}
+  <tr>
+
+      <td>{{i.schedule.date}}</td>
+      <td>{{i.schedule.hospital}}</td>
+      <td>{{i.schedule.vaccine}}</td>
+      <td>{{i.schedule.start_time}}</td>
+      <td>{{i.schedule.end_time}}</td>
+      <td>
+          {% if i.status == 0 %}
+              <button type="button" style="display:inline" class="btn btn-info">Approved Pending</button></a>
+           {% elif i.status ==  1 %}
+         <button type="button" class="btn btn-success">Approved</button>
+          {% else %}
+         <button type="button" class="btn btn-danger">Reject</button>
+          {% endif %}
+      </td>
+  </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

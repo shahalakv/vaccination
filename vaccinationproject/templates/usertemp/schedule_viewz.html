@@ -1,0 +1,46 @@
+{% extends 'usertemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="width:600px;margin-left:100px;margin-top:70px;">
+     <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ schedulezFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% for message in messages %}
+    <div class="btn btn-danger" role="alert">
+        {{message}}
+    </div>
+        {% endfor %}
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Date</th>
+      <th scope="col">Hospital</th>
+      <th scope="col">Vaccine</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in schedulez %}
+  <tr>
+      <td>{{i.date}}</td>
+       <td>{{i.hospital}}</td>
+      <td>{{i.vaccine}}</td>
+      <td>{{i.start_time}}</td>
+      <td>{{i.end_time}}</td>
+      <td><a href="{% url 'book_appointment' i.id %}"><button class="btn btn-info">Book Appointment</button></a></td>
+  </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

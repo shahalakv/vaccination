@@ -1,0 +1,39 @@
+{% extends 'nursetemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:120px;margin-top:70px;">
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ usersFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Username</th>
+      <th scope="col">Address</th>
+      <th scope="col">Child Name</th>
+      <th scope="col">Child Age</th>
+      <th scope="col">Gender</th>
+
+    </tr>
+  {% for i in users %}
+  <tr>
+      <td>{{i.username}}</td>
+      <td>{{i.address}}</td>
+      <td>{{i.child_name}}</td>
+       <td>{{i.child_age}}</td>
+       <td>{{i.gender}}</td>
+  </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

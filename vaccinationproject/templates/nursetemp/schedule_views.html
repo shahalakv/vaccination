@@ -1,0 +1,54 @@
+{% extends 'nursetemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:100px;margin-top:70px;">
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ schedulesFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Date</th>
+      <th scope="col">Hospital</th>
+      <th scope="col">Vaccine</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in schedules %}
+  <tr>
+      <td>{{i.date}}</td>
+      <td>{{i.hospital}}</td>
+      <td>{{i.vaccine}}</td>
+      <td>{{i.start_time}}</td>
+      <td>{{i.end_time}}</td>
+
+
+<td><a href="{% url 'schedule_updates' i.id %}"><button class="btn btn-success">Update</button></a>
+       <form action="{% url 'schedule_deletes' i.id %}" method="post" style="display:inline" onsubmit="window.mytest()">
+{% csrf_token %}
+           <button class="btn btn-danger">Delete</button></a>
+           </form>
+      </td>
+  </tr>
+
+    {% endfor %}
+</table>
+</div>
+<script type="text/javascript">
+    window.mytest = function()
+    {var isValid = confirm('Are you sure want to delete ?');if (!isValid){ event.preventDefault();
+    }}
+</script>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'admintemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:20px;margin-top:70px;">
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ userFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Child Name</th>
+      <th scope="col">Child Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Parent Name</th>
+      <th scope="col">Address</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in user %}
+  <tr>
+      <td>{{i.child_name}}</td>
+      <td>{{i.child_age}}</td>
+      <td>{{i.gender}}</td>
+       <td>{{i.username}}</td>
+       <td>{{i.address}}</td>
+ <td><a href="{% url 'user_update' i.id %}"><button class="btn btn-success">Update</button></a>
+       <form action="{% url 'user_delete' i.id %}" method="post" style="display:inline" onsubmit="window.mytest()">
+{% csrf_token %}
+           <button class="btn btn-danger">Delete</button></a>
+           </form>
+      </td>
+  </tr>
+
+    {% endfor %}
+</table>
+</div>
+<script type="text/javascript">
+    window.mytest = function()
+    {var isValid = confirm('Are you sure want to delete ?');if (!isValid){ event.preventDefault();
+    }}
+</script>
+{% endblock %}

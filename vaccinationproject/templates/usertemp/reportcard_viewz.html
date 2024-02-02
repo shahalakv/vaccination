@@ -1,0 +1,39 @@
+{% extends 'usertemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="width:600px;margin-left:100px;margin-top:70px;">
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ reportcardzFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Date</th>
+      <th scope="col">Child Name</th>
+      <th scope="col">Child Age</th>
+      <th scope="col">Hospital</th>
+      <th scope="col">Vaccine</th>
+    </tr>
+  {% for i in reportcardz %}
+  <tr>
+      <td>{{i.schedule.date}}</td>
+      <td>{{i.user.child_name}}</td>
+      <td>{{i.user.child_age}}</td>
+      <td>{{i.schedule.hospital}}</td>
+      <td>{{i.schedule.vaccine}}</td>
+
+  </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'theme.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body class="p-3 mb-2 bg-danger-subtle text-emphasis-danger">
+<div>
+<div class="card bg-primary-subtle" style="max-width:600px;margin-left:300px;margin-top:30px;">
+  <form method="post">
+      <BR><h5 align="center"><b>USER REGISTRATION</b></h5><BR>
+ {% csrf_token %}
+
+    {{form|crispy}}
+<div align="center">
+  <button type="submit" class="btn btn-primary" style="width:100px">Sign In</button>
+</div>
+</form>
+  </div>
+</div>
+{% endblock %}

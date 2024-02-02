@@ -1,0 +1,48 @@
+{% extends 'nursetemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:100px;margin-top:70px;">
+     <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ complaintsFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Subject</th>
+      <th scope="col">Complaint</th>
+      <th scope="col">Date</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in complaints %}
+  <tr>
+      <td>{{i.subject}}</td>
+      <td>{{i.complaint}}</td>
+      <td>{{i.date}}</td>
+<td><a href="{% url 'complaint_updates' i.id %}"><button class="btn btn-success">Update</button></a>
+       <form action="{% url 'complaint_deletes' i.id %}" method="post" style="display:inline" onsubmit="window.mytest()">
+{% csrf_token %}
+           <button class="btn btn-danger">Delete</button></a>
+           </form>
+      </td>
+  </tr>
+
+    {% endfor %}
+</table>
+</div>
+<script type="text/javascript">
+    window.mytest = function()
+    {var isValid = confirm('Are you sure want to delete ?');if (!isValid){ event.preventDefault();
+    }}
+</script>
+{% endblock %}

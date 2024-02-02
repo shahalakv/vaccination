@@ -1,0 +1,61 @@
+{% extends 'admintemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="margin-left:20px;margin-top:70px;">
+    <div class="row">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6">
+            <form method="get" class="form-inline" style="float:right;">
+                <div class="input-group">
+                    {{ nurseFilter.form }}
+                    <div class="input-group-append">
+                        <button class="btn-btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert.danger" role ="alert">
+      {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+ <table class="table">
+  <tbody>
+  <tr class="table-info">
+      <th scope="col">Username</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Hospital</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  {% for i in nurse %}
+  <tr>
+      <td>{{i.username}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.address}}</td>
+      <td>{{i.hospital}}</td>
+
+      <td><a href="{% url 'nurse_update' i.id %}"><button class="btn btn-success">Update</button></a>
+       <form action="{% url 'nurse_delete' i.id %}" method="POST" style="display:inline" onsubmit="window.mytest()">
+{% csrf_token %}
+           <input type="hidden" name="nurse" value="{{i.id}}">
+           <button type="submit" class="btn btn-danger">Delete</button></a>
+           </form>
+      </td>
+  </tr>
+
+    {% endfor %}
+</table>
+</div>
+<script type="text/javascript">
+    window.mytest = function()
+    {var isValid = confirm('Are you sure want to delete ?');if (!isValid){ event.preventDefault();
+    }}
+</script>
+{% endblock %}
